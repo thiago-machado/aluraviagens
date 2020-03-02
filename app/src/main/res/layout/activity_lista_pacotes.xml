@@ -7,49 +7,76 @@
     tools:context=".ui.activity.ListaPacotesActivity">
 
     <!--
-    android:layout_width e android:layout_height: foi inserido o
-    valor wrap_content para crescer o suficiente.
+    android:layout_width="0dp" e android:layout_height="0dp":
+    o professor disse que havia um valor chamado "match_constraint".
+    Contudo, essa opção não existe no meu AS. Resolvi o exemplo
+    que ele passou informando 0dp em height e width.
+    Link:
+    https://stackoverflow.com/questions/37603751/set-width-to-match-constraints-in-constraintlayout
 
-    android:layout_marginStart: quando temos um eixo X, em
-    vez de maginLeft, entendemos como a parte inicial, Start.
-    Sendo assim, lidaremos com o layout_marginEnd também.
-
-    IMPORTANTE:
-
-    Ao trabalharmos com o layout_marginStart no
-    ConstraintLayout, é necessário aplicarmos
-    obrigatoriamente outra regra de margem, isto é,
-    layout_marginEnd, para darmos suporte às APIs
-    abaixo de 17.
-    Outro ponto importante é que os valores em layout_marginStart
-    e layout_marginEnd devem ser os MESMOS.
-
-    layout_constraintStart_toStartOf: define a quem a constraint de
-    nossa view (o TextView), está atrelada (o parent). No caso,
-    o parent de nossa view é o ConstraintLayout.
-
-    layout_constraintTop_toTopOf: igual ao que foi falado acima.
-
-    app:layout_constraintHorizontal_bias="0.0" = definindo a % para o
-    BIAS no lado horizomtal. O valor "0.0" significa que ficará
-    colocado no lado esquerdo. Claro, se ecistir margem, ele respeitará
-    a margem (no nossoc aso, há uma margem de 20dp em todos os lados).
-    BIAS com valor 0.5 centralizará horizontalmente a View em relação ao Parent.
-    BIAS com valor 1, jogará a View para o lado direito.
-
-    app:layout_constraintVertical_bias =  similar ao que foi explicado
-    acima. Esse boas define a % do BIAS em relação a posição veritical.
-    O valor "0.0" significa que ficará colocado com o topo.
-    BIAS com valor 0.5 centralizará a View verticalmente em relação ao Parent.
-    BIAS com valor 1, jogará a View para a parte de baixo da tela.
-
+    O layout_width está com valor 0dp, pois quando estamos no ConstraintLayout,
+    ele se refere justamente ao match_constraint. Então, não se assustem caso vejam este valor.
+    A parte de baixo está ligada ao parent, bem como as partes final, do início e do topo,
+    mantendo-se o aspecto inicial de ficar alinhada ao parent, já que todos os
+    Constraints se relacionam a ele.
     -->
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--
+   android:layout_width e android:layout_height: foi inserido o
+   valor wrap_content para crescer o suficiente.
+
+   android:layout_marginStart: quando temos um eixo X, em
+   vez de maginLeft, entendemos como a parte inicial, Start.
+   Sendo assim, lidaremos com o layout_marginEnd também.
+
+   IMPORTANTE:
+
+   Ao trabalharmos com o layout_marginStart no
+   ConstraintLayout, é necessário aplicarmos
+   obrigatoriamente outra regra de margem, isto é,
+   layout_marginEnd, para darmos suporte às APIs
+   abaixo de 17.
+   Outro ponto importante é que os valores em layout_marginStart
+   e layout_marginEnd devem ser os MESMOS.
+
+   layout_constraintStart_toStartOf: define a quem a constraint de
+   nossa view (o TextView), está atrelada (o parent). No caso,
+   o parent de nossa view é o ConstraintLayout.
+
+   layout_constraintTop_toTopOf: igual ao que foi falado acima.
+
+   app:layout_constraintHorizontal_bias="0.0" = definindo a % para o
+   BIAS no lado horizomtal. O valor "0.0" significa que ficará
+   colocado no lado esquerdo. Claro, se ecistir margem, ele respeitará
+   a margem (no nossoc aso, há uma margem de 20dp em todos os lados).
+   BIAS com valor 0.5 centralizará horizontalmente a View em relação ao Parent.
+   BIAS com valor 1, jogará a View para o lado direito.
+
+   app:layout_constraintVertical_bias =  similar ao que foi explicado
+   acima. Esse boas define a % do BIAS em relação a posição veritical.
+   O valor "0.0" significa que ficará colocado com o topo.
+   BIAS com valor 0.5 centralizará a View verticalmente em relação ao Parent.
+   BIAS com valor 1, jogará a View para a parte de baixo da tela.
+
+   -->
     <TextView
         android:id="@+id/activity_lista_pacotes_texto_especiais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Especiais"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,5 +84,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <!--
+    app:layout_constraintStart_toStartOf="@+id/activity_lista_pacotes_texto_especiais":
+    está definindo que o START de nosso TextView "Brasil" se inciará com
+    base no início do TextView "Especiais".
+
+    app:layout_constraintTop_toBottomOf="@+id/activity_lista_pacotes_texto_especiais":
+    está definido que o TOPO do TextView "Brasil" está alinhado com o BOTTOM
+    do TextView "Especiais".
+    -->
+    <TextView
+        android:id="@+id/activity_lista_pacotes_texto_brasil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Brasil"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/activity_lista_pacotes_texto_especiais"
+        app:layout_constraintTop_toBottomOf="@+id/activity_lista_pacotes_texto_especiais" />
 
 </android.support.constraint.ConstraintLayout>
