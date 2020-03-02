@@ -2,8 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+
+    tools:src="@sample/pacote.json/imagem" = estamos pegando a
+    imagem que esta em uma chave no JSON e trazendo ao ImageView.
+    Dessa maneira, temos uma ideia de como está ficando nosso
+    aplicativo sem precisar executar a aplicação.
+
+    O tools serve somente para apresentar o que foi implementado no
+    Preview.
+    -->
     <ImageView
         android:id="@+id/item_pacote_imagem"
         android:layout_width="0dp"
@@ -13,8 +24,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:src="@drawable/sao_paulo_sp"
         android:scaleType="centerCrop"
+        tools:src="@sample/pacotes.json/pacotes/imagem"
         />
 
     <!--
@@ -23,12 +34,14 @@
     android:background="@android:drawable/screen_background_dark_transparent":
     insere um background escuro com transparência ao texto.
 
+    tools:text="@sample/pacote.json/local": pegando o "local"
+    do JSON. Lembrando que tools funciona somente para o Preview.
     -->
     <TextView
         android:id="@+id/item_pacote_local"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="São Paulo"
+        tools:text="@sample/pacotes.json/pacotes/local"
         app:layout_constraintStart_toStartOf="@id/item_pacote_imagem"
         app:layout_constraintEnd_toEndOf="@id/item_pacote_imagem"
         app:layout_constraintTop_toTopOf="@id/item_pacote_imagem"
@@ -49,6 +62,7 @@
     possui, criamos uma View simples, que possui um width que ocpua toda
     a tela, um height de 3dp, background na cor larannja e
     posicionamento de topo de acordo com o ImageView.
+
     -->
     <View
         android:id="@+id/item_pacote_divisor"
@@ -62,6 +76,10 @@
     <!--
     Esse texto ficará abaixo da ImageView e do divisor.
     Não há muito o que comentar.
+
+    tools:text="@sample/pacote.json/dias": pegando "dias"
+    do JSON. Lembrando que tools funciona somente para o Preview.
+
     -->
     <TextView
         android:id="@+id/item_pacote_dias"
@@ -71,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_pacote_imagem"
         app:layout_constraintHorizontal_bias="0.0"
-        android:text="2 dias"
+        tools:text="@sample/pacotes.json/pacotes/dias"
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_margin="8dp"/>
@@ -83,12 +101,16 @@
     É importante notar que as constraints de fim e inferior não são
     necessárias e, essa nova view, será posicionada e alinhada
     de acordo com o outro TextView.
+
+    android:id="@+id/item_pacote_preco": pegando o "preco"
+    do JSON. Lembrando que tools funciona somente para o Preview.
+
     -->
     <TextView
         android:id="@+id/item_pacote_preco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="R$ 243,99"
+        tools:text="@sample/pacotes.json/pacotes/preco"
         app:layout_constraintTop_toBottomOf="@id/item_pacote_dias"
         app:layout_constraintStart_toStartOf="@id/item_pacote_dias"
         android:textSize="20sp"

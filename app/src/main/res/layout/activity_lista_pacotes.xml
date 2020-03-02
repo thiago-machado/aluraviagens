@@ -106,12 +106,22 @@
         app:layout_constraintStart_toStartOf="@+id/activity_lista_pacotes_texto_especiais"
         app:layout_constraintTop_toBottomOf="@+id/activity_lista_pacotes_texto_especiais" />
 
+    <!--
+    Basicamente, o tools é uma ferramenta do Android para a
+    utilização de atributos nas Views, a serem renderizados
+    em tempo real no momento em que criamos o layout,
+    então eles não impactarão diretamente no código, ou
+    na execução.
+    -->
     <ListView
         android:id="@+id/activity_list_pacotes_listview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_lista_pacotes_banner"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_pacote" />
 </android.support.constraint.ConstraintLayout>
