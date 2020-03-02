@@ -79,6 +79,10 @@
     <!--
     Esse texto ficará abaixo da ImageView, divisor e do texto de "dias".
     Não há muito o que comentar.
+
+    É importante notar que as constraints de fim e inferior não são
+    necessárias e, essa nova view, será posicionada e alinhada
+    de acordo com o outro TextView.
     -->
     <TextView
         android:id="@+id/item_pacote_preco"
