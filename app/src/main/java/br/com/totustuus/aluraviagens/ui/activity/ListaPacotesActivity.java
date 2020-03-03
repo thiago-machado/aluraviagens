@@ -1,5 +1,6 @@
 package br.com.totustuus.aluraviagens.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -38,5 +39,8 @@ public class ListaPacotesActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.activity_list_pacotes_listview);
         List<Pacote> pacotes = new PacoteDAO().lista();
         listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
+
+        // essa linha é só um teste
+        //startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 }
