@@ -19,11 +19,15 @@ import java.util.Locale;
 
 import br.com.totustuus.aluraviagens.R;
 import br.com.totustuus.aluraviagens.model.Pacote;
+import br.com.totustuus.aluraviagens.util.MoedaUtil;
+import br.com.totustuus.aluraviagens.util.ResourcesUtil;
 
 public class ListaPacotesAdapter extends BaseAdapter {
 
+    public static final String DIAS_PLURAL = " dias";
+    public static final String DIA_SINGULAR = " dia";
     private final List<Pacote> pacotes;
-    private Context context;
+    private final Context context;
 
     public ListaPacotesAdapter(List<Pacote> pacotes, Context context) {
         this.pacotes = pacotes;
@@ -54,60 +58,37 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
         Pacote pacote = getItem(position);
 
-        TextView local = view.findViewById(R.id.item_pacote_local);
-        TextView dias = view.findViewById(R.id.item_pacote_dias);
-        TextView preco = view.findViewById(R.id.item_pacote_preco);
-        ImageView imagem = view.findViewById(R.id.item_pacote_imagem);
-
-
-        local.setText(pacote.getLocal());
-        dias.setText((pacote.getDias() > 1) ? (pacote.getDias() + " dias") : (pacote.getDias() + " dia"));
-
-        // transformando bigdecimal em moeda no formato brasileiro
-        NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(
-                new Locale("pt", "br"));
-        String moedaBrasileira = formatoBrasileiro
-                .format(pacote.getPreco()).replace("R$", "R$ ");
-        preco.setText(moedaBrasileira);
-
-
-          /*
-        Se utilizarmos getImagem() da nossa classe Pacote, teremos uma string, e não um drawable ou bitmap
-        a ser acrescentado, isto é, um valor acessível via ImageView.
-
-        Sendo assim, é preciso tornar possível transformar esta string em um drawable, por exemplo.
-        Para isto, poderemos utilizar o próprio context do Android, que já está acessível como atributo da classe.
-
-        Para utilizá-lo, pediremos recursos a partir dele, com getResources(), e com isto pegaremos
-        suas variáveis.
-        Assim, seremos capazes de pegar algum recurso a partir de uma string de algum valor, por exemplo.
-        Chamaremos o resources novamente e pegaremos um identificador com getIdentifier(),
-        a partir de um valor existente, que no caso é uma string.
-
-        Ele nos pede alguns parâmetros:
-        1) o nome do recurso que queremos;
-        2) seu tipo;
-        3) e o pacote em que ele se encontra.
-
-        O que vamos preencher:
-        1) O nome esperado para este recurso é justamente aquele localizado no nosso pacote;
-        2) a string será "drawable";
-        3) e o pacote raiz poderá ser enviado manualmente. No entanto, uma técnica mais
-        sucinta envolve o acesso ao pacote por meio do contexto.
-
-        Tendo-se o identificador, poderemos fazer a atribuição a uma variável e
-        assim será devolvido o id com valor inteiro, por ele se referir ao drawable esperado.
-
-        Com o ID em mãos, basta usar resources para buscar o drawable pelo ID. Teremos como retorno um Drawable.
-        Com o Drawable em mãos, agora é colocar na ImageView com .setImageDrawable(drawable).
-         */
-        Resources resources = context.getResources();
-        int drawableID = resources.getIdentifier(pacote.getImagem(), "drawable", context.getPackageName());
-        Drawable drawable = resources.getDrawable(drawableID);
-        imagem.setImageDrawable(drawable);
-
+        configuraLocal(view, pacote);
+        configuraDias(view, pacote);
+        configuraPreco(view, pacote);
+        configuraImagem(view, pacote);
 
 
         return view;
+    }
+
+    private void configuraImagem(View view, Pacote pacote) {
+
+        ImageView imagem = view.findViewById(R.id.item_pacote_imagem);
+        Drawable drawable = ResourcesUtil.devolveDrawable(pacote.getImagem(), context);
+        imagem.setImageDrawable(drawable);
+    }
+
+
+    private void configuraPreco(View view, Pacote pacote) {
+
+        TextView preco = view.findViewById(R.id.item_pacote_preco);
+        String moedaBrasileira = MoedaUtil.formataParaReal(pacote.getPreco());
+        preco.setText(moedaBrasileira);
+    }
+
+    private void configuraDias(View view, Pacote pacote) {
+        TextView dias = view.findViewById(R.id.item_pacote_dias);
+        dias.setText((pacote.getDias() > 1) ? (pacote.getDias() + DIAS_PLURAL) : (pacote.getDias() + DIA_SINGULAR));
+    }
+
+    private void configuraLocal(View view, Pacote pacote) {
+        TextView local = view.findViewById(R.id.item_pacote_local);
+        local.setText(pacote.getLocal());
     }
 }

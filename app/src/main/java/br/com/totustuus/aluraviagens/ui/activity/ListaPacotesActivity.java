@@ -13,14 +13,20 @@ import br.com.totustuus.aluraviagens.ui.adapter.ListaPacotesAdapter;
 
 public class ListaPacotesActivity extends AppCompatActivity {
 
+    public static final String TITULO_APPBAR = "Pacotes";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_pacotes);
 
-        setTitle("Pacotes");
-        
-        /*
+        setTitle(TITULO_APPBAR);
+        configuraLista();
+    }
+
+    private void configuraLista() {
+
+         /*
         Há uma certa diferença em relação ao que víamos nos cursos anteriores de Android:
         neste tipo de atribuição, ocorria um erro de compilação pois se devolvia apenas
         a View, e tínhamos que fazer um Cast indicando que se tratava de uma classe
@@ -30,7 +36,6 @@ public class ListaPacotesActivity extends AppCompatActivity {
         processo é feito automaticamente usando-se um conceito chamado Generics.
          */
         ListView listView = findViewById(R.id.activity_list_pacotes_listview);
-
         List<Pacote> pacotes = new PacoteDAO().lista();
         listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
     }
