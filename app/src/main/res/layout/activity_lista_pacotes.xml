@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.ListaPacotesActivity">
+    android:layout_height="match_parent">
 
     <!--
     android:layout_width="0dp" e android:layout_height="0dp":
@@ -30,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/banner" />
 
     <!--
    android:layout_width e android:layout_height: foi inserido o
@@ -75,14 +75,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Especiais"
+        android:text="@string/especiais"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/activity_lista_pacotes_banner"
+        app:layout_constraintEnd_toEndOf="@id/activity_lista_pacotes_banner"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/activity_lista_pacotes_banner"
+        app:layout_constraintTop_toTopOf="@id/activity_lista_pacotes_banner"
         app:layout_constraintVertical_bias="0.0" />
 
     <!--
@@ -99,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Brasil"
+        android:text="@string/brasil"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -112,6 +112,10 @@
     em tempo real no momento em que criamos o layout,
     então eles não impactarão diretamente no código, ou
     na execução.
+
+    android:divider="@null = remove o divisor (uma linha cinza claro abaixo de
+    cada registro no ListView)
+    android:dividerHeight="0dp" = garantindo que não vai aparecer
     -->
     <ListView
         android:id="@+id/activity_list_pacotes_listview"
@@ -123,6 +127,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_lista_pacotes_banner"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_pacote" />
+        tools:listitem="@layout/item_pacote"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
 
 </android.support.constraint.ConstraintLayout>
