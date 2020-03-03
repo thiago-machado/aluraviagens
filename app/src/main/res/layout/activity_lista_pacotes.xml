@@ -24,7 +24,7 @@
         android:id="@+id/activity_lista_pacotes_banner"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="@android:color/holo_purple"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
