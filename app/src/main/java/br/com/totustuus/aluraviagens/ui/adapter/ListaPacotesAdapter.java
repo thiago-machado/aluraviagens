@@ -12,7 +12,10 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import br.com.totustuus.aluraviagens.R;
 import br.com.totustuus.aluraviagens.model.Pacote;
@@ -58,8 +61,14 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
 
         local.setText(pacote.getLocal());
-        dias.setText(pacote.getDias() + " dias");
-        preco.setText(" R$ " + pacote.getPreco().setScale(2, RoundingMode.CEILING).toString());
+        dias.setText((pacote.getDias() > 1) ? (pacote.getDias() + " dias") : (pacote.getDias() + " dia"));
+
+        // transformando bigdecimal em moeda no formato brasileiro
+        NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(
+                new Locale("pt", "br"));
+        String moedaBrasileira = formatoBrasileiro
+                .format(pacote.getPreco()).replace("R$", "R$ ");
+        preco.setText(moedaBrasileira);
 
 
           /*

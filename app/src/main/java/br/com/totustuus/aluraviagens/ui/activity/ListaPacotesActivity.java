@@ -18,6 +18,8 @@ public class ListaPacotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_pacotes);
 
+        setTitle("Pacotes");
+        
         /*
         Há uma certa diferença em relação ao que víamos nos cursos anteriores de Android:
         neste tipo de atribuição, ocorria um erro de compilação pois se devolvia apenas
