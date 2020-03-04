@@ -3,6 +3,9 @@ package br.com.totustuus.aluraviagens.ui.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -11,6 +14,8 @@ import br.com.totustuus.aluraviagens.R;
 import br.com.totustuus.aluraviagens.dao.PacoteDAO;
 import br.com.totustuus.aluraviagens.model.Pacote;
 import br.com.totustuus.aluraviagens.ui.adapter.ListaPacotesAdapter;
+
+import static br.com.totustuus.aluraviagens.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
 
 public class ListaPacotesActivity extends AppCompatActivity {
 
@@ -23,9 +28,6 @@ public class ListaPacotesActivity extends AppCompatActivity {
 
         setTitle(TITULO_APPBAR);
         configuraLista();
-
-        // TODO essa linha é só um teste
-        startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 
     private void configuraLista() {
@@ -40,8 +42,21 @@ public class ListaPacotesActivity extends AppCompatActivity {
         processo é feito automaticamente usando-se um conceito chamado Generics.
          */
         ListView listView = findViewById(R.id.activity_list_pacotes_listview);
-        List<Pacote> pacotes = new PacoteDAO().lista();
-        listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
+        final List<Pacote> pacotes = new PacoteDAO().lista();
 
+        listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                chamandoResumoPacoteActivity(position, pacotes);
+            }
+        });
+    }
+
+    private void chamandoResumoPacoteActivity(int position, List<Pacote> pacotes) {
+        Intent intent = new Intent(ListaPacotesActivity.this, ResumoPacoteActivity.class);
+        intent.putExtra(CHAVE_PACOTE, pacotes.get(position));
+        startActivity(intent);
     }
 }

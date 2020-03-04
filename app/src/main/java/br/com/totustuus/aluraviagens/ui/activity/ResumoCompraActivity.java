@@ -14,6 +14,8 @@ import br.com.totustuus.aluraviagens.util.DataUtil;
 import br.com.totustuus.aluraviagens.util.MoedaUtil;
 import br.com.totustuus.aluraviagens.util.ResourcesUtil;
 
+import static br.com.totustuus.aluraviagens.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
+
 public class ResumoCompraActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Resumo da compra";
@@ -22,16 +24,23 @@ public class ResumoCompraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_compra);
-
         setTitle(TITULO_APPBAR);
+        carregaPacoteRecebido();
+    }
 
-        Pacote pacoteSaoPaulo = new Pacote("São Paulo", "sao_paulo_sp",
-                2, new BigDecimal("243.99"));
+    private void carregaPacoteRecebido() {
 
-        mostraLocal(pacoteSaoPaulo);
-        mostraImagem(pacoteSaoPaulo);
-        mostraData(pacoteSaoPaulo);
-        mostraPreco(pacoteSaoPaulo);
+        if(getIntent().hasExtra(CHAVE_PACOTE)) {
+            final Pacote pacote = (Pacote) getIntent().getSerializableExtra(CHAVE_PACOTE);
+            inicializaCampos(pacote);
+        }
+    }
+
+    private void inicializaCampos(Pacote pacote) {
+        mostraLocal(pacote);
+        mostraImagem(pacote);
+        mostraData(pacote);
+        mostraPreco(pacote);
     }
 
     private void mostraPreco(Pacote pacote) {
