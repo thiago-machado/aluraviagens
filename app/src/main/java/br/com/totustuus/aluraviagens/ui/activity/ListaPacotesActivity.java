@@ -41,6 +41,6 @@ public class ListaPacotesActivity extends AppCompatActivity {
         listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
 
         // essa linha é só um teste
-        //startActivity(new Intent(this, ResumoPacoteActivity.class));
+        startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 }
