@@ -1,5 +1,6 @@
 package br.com.totustuus.aluraviagens.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ public class PagamentoActivity extends AppCompatActivity {
         setTitle(TITULO_APPBAR);
 
         mostraPreco();
+
+        startActivity(new Intent(this, ResumoCompraActivity.class));
     }
 
     private void mostraPreco() {
