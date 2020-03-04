@@ -23,6 +23,9 @@ public class ListaPacotesActivity extends AppCompatActivity {
 
         setTitle(TITULO_APPBAR);
         configuraLista();
+
+        // TODO essa linha é só um teste
+        startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 
     private void configuraLista() {
@@ -40,7 +43,5 @@ public class ListaPacotesActivity extends AppCompatActivity {
         List<Pacote> pacotes = new PacoteDAO().lista();
         listView.setAdapter(new ListaPacotesAdapter(pacotes, this));
 
-        // essa linha é só um teste
-        startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 }

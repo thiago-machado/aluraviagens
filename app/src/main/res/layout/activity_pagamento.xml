@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.PagamentoActivity">
+
+    <TextView
+        android:id="@+id/pagamento_orientacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Digite as informações do cartão de crédito que você deseja usar para o pagamento"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/pagamento_valor_compra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Valor da compra:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_orientacao" />
+
+    <TextView
+        android:id="@+id/pagamento_preco_pacote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_valor_compra"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_valor_compra"
+        tools:text="R$ 421,50" />
+
+    <!--
+    android:maxLength="12" = número máximo de caracteres que o campo aceitará
+    android:inputType="number" = aceitará somente números
+    android:hint="Número do Cartão" = placeholder que informará o que deve ser preenchido
+
+    -->
+    <EditText
+        android:id="@+id/pagamento_numero_cartao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Número do Cartão"
+        android:maxLength="12"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_preco_pacote" />
+
+    <EditText
+        android:id="@+id/pagamento_ano_cartao"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="MM"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pagamento_cvc_cartao"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_numero_cartao" />
+
+    <EditText
+        android:id="@+id/pagamento_mes_cartao"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="AA"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pagamento_cvc_cartao"
+        app:layout_constraintStart_toEndOf="@+id/pagamento_ano_cartao" />
+
+    <!--
+    android:drawableStart="@drawable/ic_cvc_cartao_de_credito" = inserindo uma imagem no início da
+    inserção de texto. Nosso EditText terá uma imagem de um cartão e um espaço para inserir os dígitos.
+    -->
+    <EditText
+        android:id="@+id/pagamento_cvc_cartao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="CVC"
+        android:inputType="number"
+        android:maxLength="3"
+        android:drawableStart="@drawable/ic_cvc_cartao_de_credito"
+        android:drawableLeft="@drawable/ic_cvc_cartao_de_credito"
+        app:layout_constraintEnd_toEndOf="@+id/pagamento_numero_cartao"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_numero_cartao" />
+
+    <!--
+    android:inputType="text" = aceita textos
+    -->
+    <EditText
+        android:id="@+id/pagamento_nome_cartao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nome no cartão"
+        android:inputType="textCapCharacters"
+        app:layout_constraintEnd_toEndOf="@+id/pagamento_cvc_cartao"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_ano_cartao"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_mes_cartao" />
+
+    <!--
+    android:background="@drawable/botao_redondo_laranja" = inserindo o backround que criamos
+    nas aulas passadas.
+    -->
+    <Button
+        android:id="@+id/pagamento_botao_finalizar_compra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botao_redondo_laranja"
+        android:text="FINALIZAR COMPRA"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/pagamento_nome_cartao"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_nome_cartao"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_nome_cartao" />
+
+</android.support.constraint.ConstraintLayout>

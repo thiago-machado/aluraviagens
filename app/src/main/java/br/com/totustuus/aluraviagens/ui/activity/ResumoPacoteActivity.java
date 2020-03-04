@@ -1,5 +1,6 @@
 package br.com.totustuus.aluraviagens.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ public class ResumoPacoteActivity extends AppCompatActivity {
         mostraDias(pacoteSaoPaulo);
         mostraPreco(pacoteSaoPaulo);
         mostraData(pacoteSaoPaulo);
+
+        // TODO essa linha é só um teste
+        startActivity(new Intent(this, PagamentoActivity.class));
     }
 
     private void mostraData(Pacote pacote) {
