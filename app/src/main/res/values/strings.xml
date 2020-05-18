@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Alura Viagens</string>
+    <string name="app_name">Alura Viagens (Constraint Layout)</string>
     <string name="especiais">Especiais</string>
     <string name="brasil">Brasil</string>
     <string name="banner">Banner</string>
